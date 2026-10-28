@@ -1,58 +1,168 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Login & Registration System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based authentication system built with **Laravel and PHP**. This project demonstrates user registration, login, authentication, and a personalized dashboard, with a focus on learning Laravel's MVC architecture and database integration.
 
-## About Laravel
+## Project Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The Laravel Login & Registration System is a learning project developed to practice backend web development using Laravel. It allows users to create accounts, log in, and access a dashboard after successful authentication.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **User Registration** — Create an account with name, email, phone number, and password.
+- **User Login** — Authenticate users with their registered credentials.
+- **Input Validation** — Validate submitted registration data.
+- **Password Hashing** — Store passwords securely using Laravel's hashing functionality.
+- **Dashboard** — Display user information after login.
+- **Logout** — End the authenticated session.
+- **Profile Management UI** — Profile editing and password-change pages are included in the project.
 
-## Learning Laravel
+*Note: Verify each feature in the running application before presenting it as fully implemented.*
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Technologies Used
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** PHP, Laravel
+- **Frontend:** HTML, CSS, Blade Templates
+- **Database:** SQLite
+- **Development Environment:** Laravel Herd
+- **Version Control:** Git and GitHub
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Screenshots
 
-## Agentic Development
+Screenshots of the application's main pages will be added here.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Register Page | Login Page |
+|---|---|
+| ![Register Page](docs/screenshots/register.png) | ![Login Page](docs/screenshots/login.png) |
+
+| Dashboard |
+|---|
+| ![Dashboard](docs/screenshots/dashboard.png) |
+
+*To display these screenshots, add the corresponding image files to `docs/screenshots/` in this repository.*
+
+## Installation and Setup
+
+### Prerequisites
+
+Make sure the following tools are installed:
+
+- PHP 8.3 or a compatible version supported by the project
+- Composer
+- Node.js and npm
+- Git
+
+Laravel Herd can be used as the local PHP development environment on Windows.
+
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/Meisu112/laravel-testing.git
+cd laravel-testing
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install PHP Dependencies
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Configure the Environment
 
-## Code of Conduct
+Copy the example environment file.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**PowerShell:**
 
-## Security Vulnerabilities
+```powershell
+Copy-Item .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Generate the application key.
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4. Set Up the SQLite Database
+
+Create the database file if it does not already exist.
+
+**PowerShell:**
+
+```powershell
+if (!(Test-Path database/database.sqlite)) {
+    New-Item database/database.sqlite -ItemType File
+}
+```
+
+Make sure `.env` contains:
+
+```env
+DB_CONNECTION=sqlite
+```
+
+Run the database migrations.
+
+```bash
+php artisan migrate
+```
+
+### 5. Install Frontend Dependencies
+
+```bash
+npm install
+npm run build
+```
+
+### 6. Start the Application
+
+```bash
+php artisan serve
+```
+
+Open the local URL shown in the terminal, usually:
+
+`http://127.0.0.1:8000`
+
+### 7. Create an Account
+
+Open the registration page, create a test account, and use the registered credentials to test the login and dashboard flow.
+
+## Project Structure
+
+```text
+laravel-testing/
+├── app/
+│   ├── Http/Controllers/
+│   └── Models/
+├── database/
+│   └── migrations/
+├── public/
+├── resources/
+│   └── views/
+│       └── auth/
+├── routes/
+│   └── web.php
+├── .env.example
+├── composer.json
+└── README.md
+```
+
+## Learning Objectives
+
+- Understand Laravel's MVC architecture.
+- Create routes and controllers.
+- Build dynamic pages with Blade templates.
+- Validate user input.
+- Work with database migrations and Eloquent models.
+- Implement basic authentication workflows.
+- Use Git and GitHub for version control.
+
+## Developer
+
+**GitHub:** [Meisu112](https://github.com/Meisu112)
+
+**Repository:** [Laravel Login & Registration System](https://github.com/Meisu112/laravel-testing)
+
+---
+
+*Developed as a Laravel learning project to strengthen PHP backend development skills.*
